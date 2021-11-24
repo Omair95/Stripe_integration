@@ -1,30 +1,25 @@
 package com.example.stripe_integration;
 
+import com.stripe.Stripe;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import javax.annotation.PostConstruct;
 
 @SpringBootApplication
-@RestController
 public class StripeIntegrationApplication {
+
+    @Value("${stripe.api.key}")
+    private String stripeApiKey;
+
+    @PostConstruct
+    public void setup () {
+        Stripe.apiKey = stripeApiKey;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(StripeIntegrationApplication.class, args);
-    }
-
-    @GetMapping("/home-page")
-    public ResponseEntity<String> getHomePage() {
-        return new ResponseEntity<String>("Hello World folks!", HttpStatus.OK);
-    }
-
-    @GetMapping("/test")
-    public ResponseEntity<String> getTestString() {
-        return new ResponseEntity<String>("Testing!", HttpStatus.OK);
     }
 
 }
