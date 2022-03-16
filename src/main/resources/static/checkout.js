@@ -6,6 +6,10 @@ const items = [{ id: "xl-tshirt" }];
 
 let elements;
 
+var purchase = {
+    amount: 15
+};
+
 initialize();
 checkStatus();
 

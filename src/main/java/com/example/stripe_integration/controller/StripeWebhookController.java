@@ -28,7 +28,7 @@ public class StripeWebhookController {
 
         Event event = new Event();
 
-        if(endpointSecret != null && sigHeader != null) {
+        if (endpointSecret != null && sigHeader != null) {
             // Only verify the event if you have an endpoint secret defined.
             // Otherwise use the basic event deserialized with GSON.
             try {
